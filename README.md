@@ -13,9 +13,9 @@ To ensure accessibility and scientific transparency, the test environment does n
 
 ### Step 1: Server Provisioning (Control Plane)
 1. Clone this repository:
-   `git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git`
+   `git clone https://github.com/juniorealmente/bagley-llm-caldera-orchestrator.git`
 2. Access the project directory:
-   `cd YOUR-REPOSITORY`
+   `cd bagley-llm-caldera-orchestrator`
 3. Spin up the CALDERA server using Docker Compose:
    `docker-compose up -d`
 4. To provision the Wazuh SIEM, use the official automated installation script (All-in-one) on your main Linux machine or container:
