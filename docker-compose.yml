@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  caldera:
+    image: mitre/caldera:latest
+    container_name: caldera_server
+    ports:
+      - "8888:8888"  # Web interface
+      - "8443:8443"  # Agents HTTPS
+      - "7010:7010"  # TCP contact
+    environment:
+      - CALDERA_ENV=production
+    volumes:
+      - ./caldera_data:/usr/src/app/data
+    restart: always
+
+# Note: Wazuh Server requires multiple containers (Indexer, Manager, Dashboard).
+# To keep the environment lightweight, installation via the official script is recommended.
+# or via the official Wazuh Docker Compose, referenced in the documentation.

@@ -1,0 +1,9 @@
+                                                                                    
+id: cdb_llm
+name: CDB LLM Integration
+version: 1.0
+description: Integration plugin for Cyber Defense Buddy (CDB) to interact with an external LLM and provide a planner to CALDERA.
+authors:
+  - "Junior Petry Machado"
+enabled: true
+
