@@ -36,15 +36,19 @@ Open PowerShell as Administrator and execute:
 With the infrastructure provisioned and the agents reporting to the servers:
 1. Install the Python dependencies:
    `pip install -r requirements.txt`
-2. Configure your API keys (e.g., Google Gemini, Caldera API) in the `.env` file.
-3. Start the orchestration engine:
+2. Configure your API keys directly in the source files. Open `main_controller.py`, `wazuh_client.py`, and `server_llm.py` and replace the placeholder strings (e.g., `INSERT_YOUR_..._KEY_HERE`) with your actual credentials.
+3. Start the LLM orchestration server (in a separate terminal):
+   `python server_llm.py`
+4. Start the main orchestration engine:
    `python main_controller.py`
 
 ### Use Cases (Prompts)
-Enter the following tactical objectives when prompted by the terminal to replicate the results presented in the dissertation:
+Enter the following tactical objectives when prompted by the terminal to replicate the evaluation scenarios:
 1. **Windows SAM/SYSTEM:** `Simulate an offline credential theft (T1003.002)...`
 2. **Linux PwnKit:** `Verify if the system is vulnerable to the PwnKit...`
 3. **Cross-platform:** `Simulate a post-compromise reconnaissance and staging phase...`
 
-## Extensibility (Future Work)
-The architecture of this orchestrator was designed in a modular way. Although the current implementation of the cognitive module uses the Google Gemini API (`google-generativeai`), the system is LLM-agnostic. Future developers can easily create new connectors for OpenAI, Anthropic, or local LLMs (such as Llama 3 via Ollama) by simply adapting the communication interface in the `src/` folder, without the need to alter the Caldera orchestration engine or the Wazuh ingestion routines.
+## Architecture and Extensibility
+The architecture of this orchestrator is highly modular and LLM-agnostic. The cognitive module (`server_llm.py`) acts as a built-in multi-model router currently configured to use **Cerebras** (`gpt-oss-120b`) as the active default provider. It also includes native, ready-to-use API connectors for OpenAI, Anthropic, Google Gemini, and Groq. 
+
+Future developers can easily switch models or add local LLM support (such as Llama 3 via Ollama) by simply updating the active provider variable in the server, without needing to alter the Caldera orchestration engine or the Wazuh ingestion routines.
